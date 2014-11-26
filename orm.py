@@ -7,7 +7,6 @@ from get_html_source import *
 
 
 # A class that maps to a table, inherits from Base
-Base = declarative_base()
 
 
 # Our class will be mapped to a table with name student
@@ -28,30 +27,17 @@ class Page(Base):
     website_url = Column(Integer, ForeignKey("website.url"))
     website = relationship(Website, backref="pages")
     url = Column(String)
+    title = Column(String)
     desc = Column(String)
     SSL = Column(Integer)
     multi_lang = Column(Integer)
     rating = Column(Integer)
 
+
 def define_rating(this_page):
-	rating = 0
-	if this_page.SSL != 0:
-		rating += 1
-	rating += this_page.pages_count // 10
-	rating += this_page.HTML_version
-	return rating
-
-
-engine = create_engine("sqlite:///orm.db")
-# will create all tables
-Base.metadata.create_all(engine)
-
-session = Session(bind=engine)
-
-#print("Adding new site to the database via the session object")
-website1 = Website(url = "https://hackbulgaria.com/")
-session.add(website1)
-#session.commit()
-
-website1.url = [Page (url = new_link)]
-session.commit()
+    rating = 0
+    if this_page.SSL != 0:
+        rating += 1
+    rating += this_page.pages_count // 10
+    rating += this_page.HTML_version
+    return rating
