@@ -1,20 +1,18 @@
 from bs4 import BeautifulSoup
 import urllib.request
 import requests
-
+from urllib.parse import urlparse
 
 scanned_urls = []
 
-domain = "http://hackbulgaria.com/"
 
 def get_domain(url):
     parsed_uri = urlparse(url)
     base_url = '{uri.scheme}://{uri.netloc}/'.format(uri=parsed_uri)
-    print(base_url)
     return base_url
 
 
-def is_outgoing(url):
+def is_outgoing(domain, url):
     if domain in url:
         return False
     return True
@@ -24,8 +22,7 @@ def prepare_link(url, href):
     return urllib.parse.urljoin(url, href)
 
 
-
-def scan_page(url):
+def scan_page(domain, url):
     if url in scanned_urls:
         return
     print (url)
@@ -35,17 +32,16 @@ def scan_page(url):
     soup = BeautifulSoup(html)
     for link in soup.find_all('a'):
         new_link = prepare_link(url, link.get('href'))
-        if not is_outgoing(new_link):
-            scan_page(new_link)
+        if not is_outgoing(domain, new_link):
+            scan_page(domain, new_link)
 
 
-def scan_website():
+def scan_website(domain):
     url = "http://" + domain
     scan_page(url)
 
 
-def main():
-    scan_page("http://hackbulgaria.com/")
-
-if __name__ == '__main__':
-    main()
+def search():
+    url = "http://hackbulgaria.com/"
+    domain = get_domain(url)
+    scan_page(domain, url)
