@@ -3,6 +3,8 @@ from sqlalchemy import Column, Integer, String, Float, ForeignKey
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import relationship
+from get_html_source import *
+
 
 # A class that maps to a table, inherits from Base
 Base = declarative_base()
@@ -40,7 +42,16 @@ def define_rating(this_page):
 	return rating
 
 
-
 engine = create_engine("sqlite:///orm.db")
 # will create all tables
 Base.metadata.create_all(engine)
+
+session = Session(bind=engine)
+
+#print("Adding new site to the database via the session object")
+website1 = Website(url = "https://hackbulgaria.com/")
+session.add(website1)
+#session.commit()
+
+website1.url = [Page (url = new_link)]
+session.commit()
