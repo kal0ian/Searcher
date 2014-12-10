@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- <link rel="stylesheet" href="style1.css"> -->
+	<style type="text/css">
+		body {
+			background-color: white;
+		}
+		p {
+			background-color: #6CD7F8
+		}
+	</style>
+</head>
+<body>
+	You gave me {{ keyword }}
+	<h3>I got:</h3>
+	<ul>
+	{% for page in pages_searched %}
+		<p>
+		<h3> <a href="{{ page.url }}">{{ page.url }}</a> </h3>
+		Title of page: {{ page.title }}
+
+		</p>
+	{% endfor %}
+	</ul>
+</body>
+</html>

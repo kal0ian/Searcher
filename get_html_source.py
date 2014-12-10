@@ -100,14 +100,15 @@ def search():
     session.commit()
 
 
-def search_word():
-    search_word = input("What do you want to search? ")
-    #search_word = search_word.split()
+def search_word(search_word):
+    # search_word = input("What do you want to search? ")
+    # search_word = search_word.split()
     pages_searched = session.query(Page).filter(
         Page.title.like('%' + search_word + '%')).all()
-    for page in pages_searched:
-        print (page.url)
+    # for page in pages_searched:
+        # print (page.url)
+    return pages_searched
 
 
 # search()
-search_word()
+# search_word()
