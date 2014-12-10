@@ -4,24 +4,22 @@
 	<!-- <link rel="stylesheet" href="style1.css"> -->
 	<style type="text/css">
 		body {
-			background-color: white;
+			background-color: #D9D9D9;
 		}
-		p {
-			background-color: #6CD7F8
+		div {
+			background: #CDC7D6;
 		}
 	</style>
 </head>
 <body>
-	You gave me {{ keyword }}
-	<h3>I got:</h3>
-	<ul>
+	<img src="https://hackbulgaria.com/static/img/HackBG-logo.png"><br>
+	<h3>Results for {{ keyword }}:</h3>
 	{% for page in pages_searched %}
-		<p>
-		<h3> <a href="{{ page.url }}">{{ page.url }}</a> </h3>
-		Title of page: {{ page.title }}
-
-		</p>
+		<div>
+			<h3> {{ page.title }}</h3>
+			<a href="{{ page.url }}">{{ page.url }}</a>	
+			<hr>
+		</div>
 	{% endfor %}
-	</ul>
 </body>
 </html>

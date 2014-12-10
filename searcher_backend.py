@@ -14,6 +14,7 @@ def hello_world():
 
 @app.route('/searcher/')
 def search():
+    print(request.args)
     keyword = request.args['keyword']
     pages_searched = search_word(keyword)
     return render_template('result.html', keyword=keyword, pages_searched=pages_searched)
