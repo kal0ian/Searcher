@@ -4,7 +4,7 @@ Jinja2==2.7.3
 Mako==0.9.1
 MarkupSafe==0.18
 SQLAlchemy==0.9.8
-Werkzeug==0.9.6
+Werkzeug==0.15.3
 apturl==0.5.2ubuntu4
 beautifulsoup4==4.3.2
 chardet==2.0.1
